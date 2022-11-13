@@ -1,0 +1,306 @@
+.. container:: page-top
+
+.. container:: nav-bar
+
+   +----------------------------------+----------------------------------+
+   | `m                               | `Linux/UNIX system programming   |
+   | an7.org <../../../index.html>`__ | trainin                          |
+   | > Linux >                        | g <http://man7.org/training/>`__ |
+   | `man-pages <../index.html>`__    |                                  |
+   +----------------------------------+----------------------------------+
+
+--------------
+
+hostnamectl(1) — Linux manual page
+==================================
+
++-----------------------------------+-----------------------------------+
+| `NAME <#NAME>`__ \|               |                                   |
+| `SYNOPSIS <#SYNOPSIS>`__ \|       |                                   |
+| `DESCRIPTION <#DESCRIPTION>`__ \| |                                   |
+| `COMMANDS <#COMMANDS>`__ \|       |                                   |
+| `OPTIONS <#OPTIONS>`__ \|         |                                   |
+| `EXIT STATUS <#EXIT_STATUS>`__ \| |                                   |
+| `SEE ALSO <#SEE_ALSO>`__ \|       |                                   |
+| `NOTES <#NOTES>`__ \|             |                                   |
+| `COLOPHON <#COLOPHON>`__          |                                   |
++-----------------------------------+-----------------------------------+
+| .. container:: man-search-box     |                                   |
++-----------------------------------+-----------------------------------+
+
+::
+
+   HOSTNAMECTL(1)                 hostnamectl                HOSTNAMECTL(1)
+
+NAME
+-------------------------------------------------
+
+::
+
+          hostnamectl - Control the system hostname
+
+
+---------------------------------------------------------
+
+::
+
+          hostnamectl [OPTIONS...] {COMMAND}
+
+
+---------------------------------------------------------------
+
+::
+
+          hostnamectl may be used to query and change the system hostname
+          and related settings.
+
+          systemd-hostnamed.service(8) and this tool distinguish three
+          different hostnames: the high-level "pretty" hostname which might
+          include all kinds of special characters (e.g. "Lennart's
+          Laptop"), the "static" hostname which is the user-configured
+          hostname (e.g. "lennarts-laptop"), and the transient hostname
+          which is a fallback value received from network configuration
+          (e.g. "node12345678"). If a static hostname is set to a valid
+          value, then the transient hostname is not used.
+
+          Note that the pretty hostname has little restrictions on the
+          characters and length used, while the static and transient
+          hostnames are limited to the usually accepted characters of
+          Internet domain names, and 64 characters at maximum (the latter
+          being a Linux limitation).
+
+          Use systemd-firstboot(1) to initialize the system hostname for
+          mounted (but not booted) system images.
+
+
+---------------------------------------------------------
+
+::
+
+          The following commands are understood:
+
+          status
+              Show system hostname and related information. If no command
+              is specified, this is the implied default.
+
+          hostname [NAME]
+              If no argument is given, print the system hostname. If an
+              optional argument NAME is provided then the command changes
+              the system hostname to NAME. By default, this will alter the
+              pretty, the static, and the transient hostname alike;
+              however, if one or more of --static, --transient, --pretty
+              are used, only the selected hostnames are changed. If the
+              pretty hostname is being set, and static or transient are
+              being set as well, the specified hostname will be simplified
+              in regards to the character set used before the latter are
+              updated. This is done by removing special characters and
+              spaces. This ensures that the pretty and the static hostname
+              are always closely related while still following the validity
+              rules of the specific name. This simplification of the
+              hostname string is not done if only the transient and/or
+              static hostnames are set, and the pretty hostname is left
+              untouched.
+
+              The static and transient hostnames must each be either a
+              single DNS label (a string composed of 7-bit ASCII lower-case
+              characters and no spaces or dots, limited to the format
+              allowed for DNS domain name labels), or a sequence of such
+              labels separated by single dots that forms a valid DNS FQDN.
+              The hostname must be at most 64 characters, which is a Linux
+              limitation (DNS allows longer names).
+
+          icon-name [NAME]
+              If no argument is given, print the icon name of the system.
+              If an optional argument NAME is provided then the command
+              changes the icon name to NAME. The icon name is used by some
+              graphical applications to visualize this host. The icon name
+              should follow the Icon Naming Specification[1].
+
+          chassis [TYPE]
+              If no argument is given, print the chassis type. If an
+              optional argument TYPE is provided then the command changes
+              the chassis type to TYPE. The chassis type is used by some
+              graphical applications to visualize the host or alter user
+              interaction. Currently, the following chassis types are
+              defined: "desktop", "laptop", "convertible", "server",
+              "tablet", "handset", "watch", "embedded", as well as the
+              special chassis types "vm" and "container" for virtualized
+              systems that lack an immediate physical chassis.
+
+          deployment [ENVIRONMENT]
+              If no argument is given, print the deployment environment. If
+              an optional argument ENVIRONMENT is provided then the command
+              changes the deployment environment to ENVIRONMENT. Argument
+              ENVIRONMENT must be a single word without any control
+              characters. One of the following is suggested: "development",
+              "integration", "staging", "production".
+
+          location [LOCATION]
+              If no argument is given, print the location string for the
+              system. If an optional argument LOCATION is provided then the
+              command changes the location string for the system to
+              LOCATION. Argument LOCATION should be a human-friendly,
+              free-form string describing the physical location of the
+              system, if it is known and applicable. This may be as generic
+              as "Berlin, Germany" or as specific as "Left Rack, 2nd
+              Shelf".
+
+
+-------------------------------------------------------
+
+::
+
+          The following options are understood:
+
+          --no-ask-password
+              Do not query the user for authentication for privileged
+              operations.
+
+          --static, --transient, --pretty
+              If status is invoked (or no explicit command is given) and
+              one of these switches is specified, hostnamectl will print
+              out just this selected hostname.
+
+              If used with set-hostname, only the selected hostname(s) will
+              be updated. When more than one of these switches are
+              specified, all the specified hostnames will be updated.
+
+          -H, --host=
+              Execute the operation remotely. Specify a hostname, or a
+              username and hostname separated by "@", to connect to. The
+              hostname may optionally be suffixed by a port ssh is
+              listening on, separated by ":", and then a container name,
+              separated by "/", which connects directly to a specific
+              container on the specified host. This will use SSH to talk to
+              the remote machine manager instance. Container names may be
+              enumerated with machinectl -H HOST. Put IPv6 addresses in
+              brackets.
+
+          -M, --machine=
+              Execute operation on a local container. Specify a container
+              name to connect to, optionally prefixed by a user name to
+              connect as and a separating "@" character. If the special
+              string ".host" is used in place of the container name, a
+              connection to the local system is made (which is useful to
+              connect to a specific user's user bus: "--user
+              --machine=lennart@.host"). If the "@" syntax is not used, the
+              connection is made as root user. If the "@" syntax is used
+              either the left hand side or the right hand side may be
+              omitted (but not both) in which case the local user name and
+              ".host" are implied.
+
+          -h, --help
+              Print a short help text and exit.
+
+          --version
+              Print a short version string and exit.
+
+          --json=MODE
+              Shows output formatted as JSON. Expects one of "short" (for
+              the shortest possible output without any redundant whitespace
+              or line breaks), "pretty" (for a pretty version of the same,
+              with indentation and line breaks) or "off" (to turn off JSON
+              output, the default).
+
+
+---------------------------------------------------------------
+
+::
+
+          On success, 0 is returned, a non-zero failure code otherwise.
+
+
+---------------------------------------------------------
+
+::
+
+          systemd(1), hostname(1), hostname(5), machine-info(5),
+          systemctl(1), systemd-hostnamed.service(8), systemd-firstboot(1)
+
+
+---------------------------------------------------
+
+::
+
+           1. Icon Naming Specification
+              http://standards.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+
+COLOPHON
+---------------------------------------------------------
+
+::
+
+          This page is part of the systemd (systemd system and service
+          manager) project.  Information about the project can be found at
+          ⟨http://www.freedesktop.org/wiki/Software/systemd⟩.  If you have
+          a bug report for this manual page, see
+          ⟨http://www.freedesktop.org/wiki/Software/systemd/#bugreports⟩.
+          This page was obtained from the project's upstream Git repository
+          ⟨https://github.com/systemd/systemd.git⟩ on 2021-08-27.  (At that
+          time, the date of the most recent commit that was found in the
+          repository was 2021-08-27.)  If you discover any rendering
+          problems in this HTML version of the page, or you believe there
+          is a better or more up-to-date source for the page, or you have
+          corrections or improvements to the information in this COLOPHON
+          (which is not part of the original manual page), send a mail to
+          man-pages@man7.org
+
+   systemd 249                                               HOSTNAMECTL(1)
+
+--------------
+
+Pages that refer to this page:
+`systemd-firstboot(1) <../man1/systemd-firstboot.1.html>`__, 
+`hostname(5) <../man5/hostname.5.html>`__, 
+`machine-info(5) <../man5/machine-info.5.html>`__, 
+`systemd-hostnamed.service(8) <../man8/systemd-hostnamed.service.8.html>`__, 
+`systemd-machined.service(8) <../man8/systemd-machined.service.8.html>`__
+
+--------------
+
+--------------
+
+.. container:: footer
+
+   +-----------------------+-----------------------+-----------------------+
+   | HTML rendering        |                       | |Cover of TLPI|       |
+   | created 2021-08-27 by |                       |                       |
+   | `Michael              |                       |                       |
+   | Ker                   |                       |                       |
+   | risk <https://man7.or |                       |                       |
+   | g/mtk/index.html>`__, |                       |                       |
+   | author of `The Linux  |                       |                       |
+   | Programming           |                       |                       |
+   | Interface <https:     |                       |                       |
+   | //man7.org/tlpi/>`__, |                       |                       |
+   | maintainer of the     |                       |                       |
+   | `Linux man-pages      |                       |                       |
+   | project <             |                       |                       |
+   | https://www.kernel.or |                       |                       |
+   | g/doc/man-pages/>`__. |                       |                       |
+   |                       |                       |                       |
+   | For details of        |                       |                       |
+   | in-depth **Linux/UNIX |                       |                       |
+   | system programming    |                       |                       |
+   | training courses**    |                       |                       |
+   | that I teach, look    |                       |                       |
+   | `here <https://ma     |                       |                       |
+   | n7.org/training/>`__. |                       |                       |
+   |                       |                       |                       |
+   | Hosting by `jambit    |                       |                       |
+   | GmbH                  |                       |                       |
+   | <https://www.jambit.c |                       |                       |
+   | om/index_en.html>`__. |                       |                       |
+   +-----------------------+-----------------------+-----------------------+
+
+--------------
+
+.. container:: statcounter
+
+   |Web Analytics Made Easy - StatCounter|
+
+.. |Cover of TLPI| image:: https://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png
+   :target: https://man7.org/tlpi/
+.. |Web Analytics Made Easy - StatCounter| image:: https://c.statcounter.com/7422636/0/9b6714ff/1/
+   :class: statcounter
+   :target: https://statcounter.com/

@@ -1,0 +1,30 @@
+Copyright for `outb.2 <outb.2.html>`__:
+
+   ::
+
+      Copyright (c) 1995 Paul Gortmaker
+      (gpg109@rsphy1.anu.edu.au)
+      Wed Nov 29 10:58:54 EST 1995
+
+License for `outb.2 <outb.2.html>`__:
+
+   ::
+
+      This is free documentation; you can redistribute it and/or
+      modify it under the terms of the GNU General Public License as
+      published by the Free Software Foundation; either version 2 of
+      the License, or (at your option) any later version.
+
+      The GNU General Public License's references to "object code"
+      and "executables" are to be interpreted as the output of any
+      document formatting or typesetting system, including
+      intermediate and printed output.
+
+      This manual is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public
+      License along with this manual; if not, see
+      <http://www.gnu.org/licenses/>.

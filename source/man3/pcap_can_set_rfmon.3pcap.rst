@@ -1,0 +1,165 @@
+.. container:: page-top
+
+.. container:: nav-bar
+
+   +----------------------------------+----------------------------------+
+   | `m                               | `Linux/UNIX system programming   |
+   | an7.org <../../../index.html>`__ | trainin                          |
+   | > Linux >                        | g <http://man7.org/training/>`__ |
+   | `man-pages <../index.html>`__    |                                  |
+   +----------------------------------+----------------------------------+
+
+--------------
+
+pcap_can_set_rfmon(3pcap) — Linux manual page
+=============================================
+
++-----------------------------------+-----------------------------------+
+| `NAME <#NAME>`__ \|               |                                   |
+| `SYNOPSIS <#SYNOPSIS>`__ \|       |                                   |
+| `DESCRIPTION <#DESCRIPTION>`__ \| |                                   |
+| `RETURN VALUE <#RETURN_VALUE>`__  |                                   |
+| \| `SEE ALSO <#SEE_ALSO>`__ \|    |                                   |
+| `COLOPHON <#COLOPHON>`__          |                                   |
++-----------------------------------+-----------------------------------+
+| .. container:: man-search-box     |                                   |
++-----------------------------------+-----------------------------------+
+
+::
+
+   PCAP_CAN_SET_RFMON(3PCAP)                      PCAP_CAN_SET_RFMON(3PCAP)
+
+NAME
+-------------------------------------------------
+
+::
+
+          pcap_can_set_rfmon - check whether monitor mode can be set for a
+          not-yet-activated capture handle
+
+
+---------------------------------------------------------
+
+::
+
+          #include <pcap/pcap.h>
+
+          int pcap_can_set_rfmon(pcap_t *p);
+
+
+---------------------------------------------------------------
+
+::
+
+          pcap_can_set_rfmon() checks whether monitor mode could be set on
+          a capture handle when the handle is activated.
+
+
+-----------------------------------------------------------------
+
+::
+
+          pcap_can_set_rfmon() returns 0 if monitor mode could not be set,
+          1 if monitor mode could be set, and a negative value on error.  A
+          negative return value indicates what error condition occurred.
+          The possible error values are:
+
+          PCAP_ERROR_NO_SUCH_DEVICE
+                 The capture source specified when the handle was created
+                 doesn't exist.
+
+          PCAP_ERROR_PERM_DENIED
+                 The process doesn't have permission to check whether
+                 monitor mode could be supported.
+
+          PCAP_ERROR_ACTIVATED
+                 The capture handle has already been activated.
+
+          PCAP_ERROR
+                 Another error occurred.  pcap_geterr(3PCAP) or
+                 pcap_perror(3PCAP) may be called with p as an argument to
+                 fetch or display a message describing the error.
+
+          Additional error codes may be added in the future; a program
+          should check for 0, 1, and negative, return codes, and treat all
+          negative return codes as errors.  pcap_statustostr(3PCAP) can be
+          called, with a warning or error code as an argument, to fetch a
+          message describing the warning or error code.
+
+
+---------------------------------------------------------
+
+::
+
+          pcap(3PCAP), pcap_create(3PCAP), pcap_activate(3PCAP),
+          pcap_set_rfmon(3PCAP)
+
+COLOPHON
+---------------------------------------------------------
+
+::
+
+          This page is part of the libpcap (packet capture library)
+          project.  Information about the project can be found at 
+          ⟨http://www.tcpdump.org/⟩.  If you have a bug report for this
+          manual page, see ⟨http://www.tcpdump.org/#patches⟩.  This page
+          was obtained from the project's upstream Git repository
+          ⟨https://github.com/the-tcpdump-group/libpcap.git⟩ on 2021-08-27.
+          (At that time, the date of the most recent commit that was found
+          in the repository was 2021-08-17.)  If you discover any rendering
+          problems in this HTML version of the page, or you believe there
+          is a better or more up-to-date source for the page, or you have
+          corrections or improvements to the information in this COLOPHON
+          (which is not part of the original manual page), send a mail to
+          man-pages@man7.org
+
+                                 31 July 2016     PCAP_CAN_SET_RFMON(3PCAP)
+
+--------------
+
+--------------
+
+.. container:: footer
+
+   +-----------------------+-----------------------+-----------------------+
+   | HTML rendering        |                       | |Cover of TLPI|       |
+   | created 2021-08-27 by |                       |                       |
+   | `Michael              |                       |                       |
+   | Ker                   |                       |                       |
+   | risk <https://man7.or |                       |                       |
+   | g/mtk/index.html>`__, |                       |                       |
+   | author of `The Linux  |                       |                       |
+   | Programming           |                       |                       |
+   | Interface <https:     |                       |                       |
+   | //man7.org/tlpi/>`__, |                       |                       |
+   | maintainer of the     |                       |                       |
+   | `Linux man-pages      |                       |                       |
+   | project <             |                       |                       |
+   | https://www.kernel.or |                       |                       |
+   | g/doc/man-pages/>`__. |                       |                       |
+   |                       |                       |                       |
+   | For details of        |                       |                       |
+   | in-depth **Linux/UNIX |                       |                       |
+   | system programming    |                       |                       |
+   | training courses**    |                       |                       |
+   | that I teach, look    |                       |                       |
+   | `here <https://ma     |                       |                       |
+   | n7.org/training/>`__. |                       |                       |
+   |                       |                       |                       |
+   | Hosting by `jambit    |                       |                       |
+   | GmbH                  |                       |                       |
+   | <https://www.jambit.c |                       |                       |
+   | om/index_en.html>`__. |                       |                       |
+   +-----------------------+-----------------------+-----------------------+
+
+--------------
+
+.. container:: statcounter
+
+   |Web Analytics Made Easy - StatCounter|
+
+.. |Cover of TLPI| image:: https://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png
+   :target: https://man7.org/tlpi/
+.. |Web Analytics Made Easy - StatCounter| image:: https://c.statcounter.com/7422636/0/9b6714ff/1/
+   :class: statcounter
+   :target: https://statcounter.com/

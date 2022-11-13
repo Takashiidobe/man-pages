@@ -1,0 +1,34 @@
+Copyright for `sysinfo.2 <sysinfo.2.html>`__:
+
+   ::
+
+      Copyright (C) 2016, Michael Kerrisk <mtk.manpages@gmail.com>
+      Based on an earlier version of the page where a few pieces were
+      copyright (C) 1993 by Dan Miner (dminer@nyx.cs.du.edu) and subsequently
+      others (see old changelog below).
+      The structure definitions are taken more or less straight from the kernel
+      source files.
+
+License for `sysinfo.2 <sysinfo.2.html>`__:
+
+   ::
+
+      Permission is granted to make and distribute verbatim copies of this
+      manual provided the copyright notice and this permission notice are
+      preserved on all copies.
+
+      Permission is granted to copy and distribute modified versions of this
+      manual under the conditions for verbatim copying, provided that the
+      entire resulting derived work is distributed under the terms of a
+      permission notice identical to this one.
+
+      Since the Linux kernel and libraries are constantly changing, this
+      manual page may be incorrect or out-of-date.  The author(s) assume no
+      responsibility for errors or omissions, or for damages resulting from
+      the use of the information contained herein.  The author(s) may not
+      have taken the same level of care in the production of this manual,
+      which is licensed free of charge, as they might when working
+      professionally.
+
+      Formatted or processed versions of this manual, if unaccompanied by
+      the source, must acknowledge the copyright and authors of this work.

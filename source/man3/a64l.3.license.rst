@@ -1,0 +1,12 @@
+Copyright for `a64l.3 <a64l.3.html>`__:
+
+   ::
+
+      \t
+      Copyright 2002 walter harms (walter.harms@informatik.uni-oldenburg.de)
+
+License for `a64l.3 <a64l.3.html>`__:
+
+   ::
+
+      Distributed under GPL

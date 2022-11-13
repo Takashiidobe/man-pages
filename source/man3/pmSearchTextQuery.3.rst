@@ -1,0 +1,181 @@
+.. container:: page-top
+
+.. container:: nav-bar
+
+   +----------------------------------+----------------------------------+
+   | `m                               | `Linux/UNIX system programming   |
+   | an7.org <../../../index.html>`__ | trainin                          |
+   | > Linux >                        | g <http://man7.org/training/>`__ |
+   | `man-pages <../index.html>`__    |                                  |
+   +----------------------------------+----------------------------------+
+
+--------------
+
+pmsearchtextquery(3) — Linux manual page
+========================================
+
++-----------------------------------+-----------------------------------+
+| `NAME <#NAME>`__ \|               |                                   |
+| `C SYNOPSIS <#C_SYNOPSIS>`__ \|   |                                   |
+| `DESCRIPTION <#DESCRIPTION>`__ \| |                                   |
+| `DIAGNOSTICS <#DIAGNOSTICS>`__ \| |                                   |
+| `SEE ALSO <#SEE_ALSO>`__ \|       |                                   |
+| `COLOPHON <#COLOPHON>`__          |                                   |
++-----------------------------------+-----------------------------------+
+| .. container:: man-search-box     |                                   |
++-----------------------------------+-----------------------------------+
+
+::
+
+   PMSEARCHTEXTQUERY(3)    Library Functions Manual    PMSEARCHTEXTQUERY(3)
+
+NAME
+-------------------------------------------------
+
+::
+
+          pmSearchTextQuery - fulltext search for metrics, instances and
+          instance domains provided by PCP search services
+
+
+-------------------------------------------------------------
+
+::
+
+          #include <pcp/pmwebapi.h>
+
+          int pmSearchTextQuery(pmSearchSettings *settings,
+          pmSearchTextRequest *request, void *arg)
+
+          cc ... -lpcp_web
+
+
+---------------------------------------------------------------
+
+::
+
+          Executes fulltext search in name, oneline help, helptext (when
+          available) as specified by request:
+
+          query
+               Query string that will be used to search.
+
+          count
+               Limits number of results. Defaults to 10.
+
+          offset
+               Search offset. Defaults to 0.
+
+          type_metric, type_indom, type_inst
+               Bit flags that limit query to only take into the account
+               specific type of entities. Defaults to all.
+
+          highlight_name, highlight_oneline, highlight_helptext
+               Bit flags that specify whether or not to highlight matched
+               terms in results. Defaults to none. Highlighted terms are
+               wrapped with `<b>' and `</b>'.
+
+          infields_name, infields_oneline, infields_helptext
+               Bit flags that allow limiting fulltext search query matching
+               only to specified fields. Defaults to all.
+
+          return_name, return_indom, return_oneline, return_helptext,
+          return_type
+               Bit flags for omitting specific fields from result. Defaults
+               to all. Fields may be omitted either way if value of a field
+               doesn't exist for a given record.
+
+          Each entity matched by the request above will be passed to
+          on_text_result callback provided by settings.
+
+
+---------------------------------------------------------------
+
+::
+
+          This function always returns zero on success.  On failure a
+          negative PMAPI error code is returned.
+
+
+---------------------------------------------------------
+
+::
+
+          pmproxy(1), pmlogger(1), pmsearch(1), redis-server(1),
+          pmSearchSetup(3), PMAPI(3) and PMWEBAPI(3).
+
+COLOPHON
+---------------------------------------------------------
+
+::
+
+          This page is part of the PCP (Performance Co-Pilot) project.
+          Information about the project can be found at 
+          ⟨http://www.pcp.io/⟩.  If you have a bug report for this manual
+          page, send it to pcp@groups.io.  This page was obtained from the
+          project's upstream Git repository
+          ⟨https://github.com/performancecopilot/pcp.git⟩ on 2021-08-27.
+          (At that time, the date of the most recent commit that was found
+          in the repository was 2021-08-27.)  If you discover any rendering
+          problems in this HTML version of the page, or you believe there
+          is a better or more up-to-date source for the page, or you have
+          corrections or improvements to the information in this COLOPHON
+          (which is not part of the original manual page), send a mail to
+          man-pages@man7.org
+
+   Performance Co-Pilot               PCP              PMSEARCHTEXTQUERY(3)
+
+--------------
+
+Pages that refer to this page:
+`pmsearchsetup(3) <../man3/pmsearchsetup.3.html>`__, 
+`pmwebapi(3) <../man3/pmwebapi.3.html>`__
+
+--------------
+
+--------------
+
+.. container:: footer
+
+   +-----------------------+-----------------------+-----------------------+
+   | HTML rendering        |                       | |Cover of TLPI|       |
+   | created 2021-08-27 by |                       |                       |
+   | `Michael              |                       |                       |
+   | Ker                   |                       |                       |
+   | risk <https://man7.or |                       |                       |
+   | g/mtk/index.html>`__, |                       |                       |
+   | author of `The Linux  |                       |                       |
+   | Programming           |                       |                       |
+   | Interface <https:     |                       |                       |
+   | //man7.org/tlpi/>`__, |                       |                       |
+   | maintainer of the     |                       |                       |
+   | `Linux man-pages      |                       |                       |
+   | project <             |                       |                       |
+   | https://www.kernel.or |                       |                       |
+   | g/doc/man-pages/>`__. |                       |                       |
+   |                       |                       |                       |
+   | For details of        |                       |                       |
+   | in-depth **Linux/UNIX |                       |                       |
+   | system programming    |                       |                       |
+   | training courses**    |                       |                       |
+   | that I teach, look    |                       |                       |
+   | `here <https://ma     |                       |                       |
+   | n7.org/training/>`__. |                       |                       |
+   |                       |                       |                       |
+   | Hosting by `jambit    |                       |                       |
+   | GmbH                  |                       |                       |
+   | <https://www.jambit.c |                       |                       |
+   | om/index_en.html>`__. |                       |                       |
+   +-----------------------+-----------------------+-----------------------+
+
+--------------
+
+.. container:: statcounter
+
+   |Web Analytics Made Easy - StatCounter|
+
+.. |Cover of TLPI| image:: https://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png
+   :target: https://man7.org/tlpi/
+.. |Web Analytics Made Easy - StatCounter| image:: https://c.statcounter.com/7422636/0/9b6714ff/1/
+   :class: statcounter
+   :target: https://statcounter.com/

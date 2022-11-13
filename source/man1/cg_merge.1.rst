@@ -1,0 +1,149 @@
+.. container:: page-top
+
+.. container:: nav-bar
+
+   +----------------------------------+----------------------------------+
+   | `m                               | `Linux/UNIX system programming   |
+   | an7.org <../../../index.html>`__ | trainin                          |
+   | > Linux >                        | g <http://man7.org/training/>`__ |
+   | `man-pages <../index.html>`__    |                                  |
+   +----------------------------------+----------------------------------+
+
+--------------
+
+cg_merge(1) — Linux manual page
+===============================
+
++-----------------------------------+-----------------------------------+
+| `NAME <#NAME>`__ \|               |                                   |
+| `SYNOPSIS <#SYNOPSIS>`__ \|       |                                   |
+| `DESCRIPTION <#DESCRIPTION>`__ \| |                                   |
+| `OPTIONS <#OPTIONS>`__ \|         |                                   |
+| `SEE ALSO <#SEE_ALSO>`__ \|       |                                   |
+| `AUTHOR <#AUTHOR>`__ \|           |                                   |
+| `COLOPHON <#COLOPHON>`__          |                                   |
++-----------------------------------+-----------------------------------+
+| .. container:: man-search-box     |                                   |
++-----------------------------------+-----------------------------------+
+
+::
+
+   CG_MERGE(1)                     cg_merge                     CG_MERGE(1)
+
+NAME
+-------------------------------------------------
+
+::
+
+          cg_merge - merges multiple Cachegrind output files into one
+
+
+---------------------------------------------------------
+
+::
+
+          cg_merge [options] [cachegrind-out-files...]
+
+
+---------------------------------------------------------------
+
+::
+
+          cg_merge sums together the outputs of multiple Cachegrind runs
+          into a single output file.
+
+
+-------------------------------------------------------
+
+::
+
+          -o outfile
+              Write the profile data to outfile rather than to standard
+              output.
+
+
+---------------------------------------------------------
+
+::
+
+          cg_annotate(1), valgrind(1),
+          $INSTALL/share/doc/valgrind/html/index.html or
+          http://www.valgrind.org/docs/manual/index.html.
+
+
+-----------------------------------------------------
+
+::
+
+          Nicholas Nethercote.
+
+COLOPHON
+---------------------------------------------------------
+
+::
+
+          This page is part of the valgrind (a system for debugging and
+          profiling Linux programs) project.  Information about the project
+          can be found at ⟨http://www.valgrind.org/⟩.  If you have a bug
+          report for this manual page, see
+          ⟨http://www.valgrind.org/support/bug_reports.html⟩.  This page
+          was obtained from the project's upstream Git repository
+          ⟨http://sourceware.org/git/valgrind.git⟩ on 2021-08-27.  (At that
+          time, the date of the most recent commit that was found in the
+          repository was 2021-08-06.)  If you discover any rendering
+          problems in this HTML version of the page, or you believe there
+          is a better or more up-to-date source for the page, or you have
+          corrections or improvements to the information in this COLOPHON
+          (which is not part of the original manual page), send a mail to
+          man-pages@man7.org
+
+   Release 3.17.0                 08/27/2021                    CG_MERGE(1)
+
+--------------
+
+--------------
+
+.. container:: footer
+
+   +-----------------------+-----------------------+-----------------------+
+   | HTML rendering        |                       | |Cover of TLPI|       |
+   | created 2021-08-27 by |                       |                       |
+   | `Michael              |                       |                       |
+   | Ker                   |                       |                       |
+   | risk <https://man7.or |                       |                       |
+   | g/mtk/index.html>`__, |                       |                       |
+   | author of `The Linux  |                       |                       |
+   | Programming           |                       |                       |
+   | Interface <https:     |                       |                       |
+   | //man7.org/tlpi/>`__, |                       |                       |
+   | maintainer of the     |                       |                       |
+   | `Linux man-pages      |                       |                       |
+   | project <             |                       |                       |
+   | https://www.kernel.or |                       |                       |
+   | g/doc/man-pages/>`__. |                       |                       |
+   |                       |                       |                       |
+   | For details of        |                       |                       |
+   | in-depth **Linux/UNIX |                       |                       |
+   | system programming    |                       |                       |
+   | training courses**    |                       |                       |
+   | that I teach, look    |                       |                       |
+   | `here <https://ma     |                       |                       |
+   | n7.org/training/>`__. |                       |                       |
+   |                       |                       |                       |
+   | Hosting by `jambit    |                       |                       |
+   | GmbH                  |                       |                       |
+   | <https://www.jambit.c |                       |                       |
+   | om/index_en.html>`__. |                       |                       |
+   +-----------------------+-----------------------+-----------------------+
+
+--------------
+
+.. container:: statcounter
+
+   |Web Analytics Made Easy - StatCounter|
+
+.. |Cover of TLPI| image:: https://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png
+   :target: https://man7.org/tlpi/
+.. |Web Analytics Made Easy - StatCounter| image:: https://c.statcounter.com/7422636/0/9b6714ff/1/
+   :class: statcounter
+   :target: https://statcounter.com/

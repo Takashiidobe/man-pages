@@ -1,0 +1,31 @@
+Copyright for `perror.3 <perror.3.html>`__:
+
+   ::
+
+      Copyright (c) 1994 Michael Haardt (michael@moria.de), 1994-06-04
+      Copyright (c) 1995 Michael Haardt
+           (michael@cantor.informatik.rwth-aachen.de), 1995-03-16
+      Copyright (c) 1996 Andries Brouwer (aeb@cwi.nl), 1996-01-13
+
+License for `perror.3 <perror.3.html>`__:
+
+   ::
+
+      This is free documentation; you can redistribute it and/or
+      modify it under the terms of the GNU General Public License as
+      published by the Free Software Foundation; either version 2 of
+      the License, or (at your option) any later version.
+
+      The GNU General Public License's references to "object code"
+      and "executables" are to be interpreted as the output of any
+      document formatting or typesetting system, including
+      intermediate and printed output.
+
+      This manual is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public
+      License along with this manual; if not, see
+      <http://www.gnu.org/licenses/>.

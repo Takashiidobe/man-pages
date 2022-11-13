@@ -1,0 +1,441 @@
+.. container:: page-top
+
+.. container:: nav-bar
+
+   +----------------------------------+----------------------------------+
+   | `m                               | `Linux/UNIX system programming   |
+   | an7.org <../../../index.html>`__ | trainin                          |
+   | > Linux >                        | g <http://man7.org/training/>`__ |
+   | `man-pages <../index.html>`__    |                                  |
+   +----------------------------------+----------------------------------+
+
+--------------
+
+stdio.h(0p) — Linux manual page
+===============================
+
++-----------------------------------+-----------------------------------+
+| `PROLOG <#PROLOG>`__ \|           |                                   |
+| `NAME <#NAME>`__ \|               |                                   |
+| `SYNOPSIS <#SYNOPSIS>`__ \|       |                                   |
+| `DESCRIPTION <#DESCRIPTION>`__ \| |                                   |
+| `APPLICAT                         |                                   |
+| ION USAGE <#APPLICATION_USAGE>`__ |                                   |
+| \| `RATIONALE <#RATIONALE>`__ \|  |                                   |
+| `FUTURE D                         |                                   |
+| IRECTIONS <#FUTURE_DIRECTIONS>`__ |                                   |
+| \| `SEE ALSO <#SEE_ALSO>`__ \|    |                                   |
+| `COPYRIGHT <#COPYRIGHT>`__        |                                   |
++-----------------------------------+-----------------------------------+
+| .. container:: man-search-box     |                                   |
++-----------------------------------+-----------------------------------+
+
+::
+
+   stdio.h(0P)             POSIX Programmer's Manual            stdio.h(0P)
+
+
+-----------------------------------------------------
+
+::
+
+          This manual page is part of the POSIX Programmer's Manual.  The
+          Linux implementation of this interface may differ (consult the
+          corresponding Linux manual page for details of Linux behavior),
+          or the interface may not be implemented on Linux.
+
+NAME
+-------------------------------------------------
+
+::
+
+          stdio.h — standard buffered input/output
+
+
+---------------------------------------------------------
+
+::
+
+          #include <stdio.h>
+
+
+---------------------------------------------------------------
+
+::
+
+          Some of the functionality described on this reference page
+          extends the ISO C standard. Applications shall define the
+          appropriate feature test macro (see the System Interfaces volume
+          of POSIX.1‐2017, Section 2.2, The Compilation Environment) to
+          enable the visibility of these symbols in this header.
+
+          The <stdio.h> header shall define the following data types
+          through typedef:
+
+          FILE          A structure containing information about a file.
+
+          fpos_t        A non-array type containing all information needed
+                        to specify uniquely every position within a file.
+
+          off_t         As described in <sys/types.h>.
+
+          size_t        As described in <stddef.h>.
+
+          ssize_t       As described in <sys/types.h>.
+
+          va_list       As described in <stdarg.h>.
+
+          The <stdio.h> header shall define the following macros which
+          shall expand to integer constant expressions:
+
+          BUFSIZ        Size of <stdio.h> buffers.  This shall expand to a
+                        positive value.
+
+          L_ctermid     Maximum size of character array to hold ctermid()
+                        output.
+
+          L_tmpnam      Maximum size of character array to hold tmpnam()
+                        output.
+
+          The <stdio.h> header shall define the following macros which
+          shall expand to integer constant expressions with distinct
+          values:
+
+          _IOFBF        Input/output fully buffered.
+
+          _IOLBF        Input/output line buffered.
+
+          _IONBF        Input/output unbuffered.
+
+          The <stdio.h> header shall define the following macros which
+          shall expand to integer constant expressions with distinct
+          values:
+
+          SEEK_CUR      Seek relative to current position.
+
+          SEEK_END      Seek relative to end-of-file.
+
+          SEEK_SET      Seek relative to start-of-file.
+
+          The <stdio.h> header shall define the following macros which
+          shall expand to integer constant expressions denoting
+          implementation limits:
+
+          {FILENAME_MAX}
+                        Maximum size in bytes of the longest pathname that
+                        the implementation guarantees can be opened.
+
+          {FOPEN_MAX}   Number of streams which the implementation
+                        guarantees can be open simultaneously. The value is
+                        at least eight.
+
+          {TMP_MAX}     Minimum number of unique filenames generated by
+                        tmpnam().  Maximum number of times an application
+                        can call tmpnam() reliably. The value of {TMP_MAX}
+                        is at least 25.
+
+                        On XSI-conformant systems, the value of {TMP_MAX}
+                        is at least 10000.
+
+          The <stdio.h> header shall define the following macro which shall
+          expand to an integer constant expression with type int and a
+          negative value:
+
+          EOF           End-of-file return value.
+
+          The <stdio.h> header shall define NULL as described in
+          <stddef.h>.
+
+          The <stdio.h> header shall define the following macro which shall
+          expand to a string constant:
+
+          P_tmpdir      Default directory prefix for tempnam().
+
+          The <stdio.h> header shall define the following macros which
+          shall expand to expressions of type ``pointer to FILE'' that
+          point to the FILE objects associated, respectively, with the
+          standard error, input, and output streams:
+
+          stderr        Standard error output stream.
+
+          stdin         Standard input stream.
+
+          stdout        Standard output stream.
+
+          The following shall be declared as functions and may also be
+          defined as macros. Function prototypes shall be provided.
+
+              void     clearerr(FILE *);
+              char    *ctermid(char *);
+              int      dprintf(int, const char *restrict, ...)
+              int      fclose(FILE *);
+              FILE    *fdopen(int, const char *);
+              int      feof(FILE *);
+              int      ferror(FILE *);
+              int      fflush(FILE *);
+              int      fgetc(FILE *);
+              int      fgetpos(FILE *restrict, fpos_t *restrict);
+              char    *fgets(char *restrict, int, FILE *restrict);
+              int      fileno(FILE *);
+              void     flockfile(FILE *);
+              FILE    *fmemopen(void *restrict, size_t, const char *restrict);
+              FILE    *fopen(const char *restrict, const char *restrict);
+              int      fprintf(FILE *restrict, const char *restrict, ...);
+              int      fputc(int, FILE *);
+              int      fputs(const char *restrict, FILE *restrict);
+              size_t   fread(void *restrict, size_t, size_t, FILE *restrict);
+              FILE    *freopen(const char *restrict, const char *restrict,
+                           FILE *restrict);
+              int      fscanf(FILE *restrict, const char *restrict, ...);
+              int      fseek(FILE *, long, int);
+              int      fseeko(FILE *, off_t, int);
+              int      fsetpos(FILE *, const fpos_t *);
+              long     ftell(FILE *);
+              off_t    ftello(FILE *);
+              int      ftrylockfile(FILE *);
+              void     funlockfile(FILE *);
+              size_t   fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+              int      getc(FILE *);
+              int      getchar(void);
+              int      getc_unlocked(FILE *);
+              int      getchar_unlocked(void);
+              ssize_t  getdelim(char **restrict, size_t *restrict, int,
+                           FILE *restrict);
+              ssize_t  getline(char **restrict, size_t *restrict, FILE *restrict);
+              char    *gets(char *);
+              FILE    *open_memstream(char **, size_t *);
+              int      pclose(FILE *);
+              void     perror(const char *);
+              FILE    *popen(const char *, const char *);
+              int      printf(const char *restrict, ...);
+              int      putc(int, FILE *);
+              int      putchar(int);
+              int      putc_unlocked(int, FILE *);
+              int      putchar_unlocked(int);
+              int      puts(const char *);
+              int      remove(const char *);
+              int      rename(const char *, const char *);
+              int      renameat(int, const char *, int, const char *);
+              void     rewind(FILE *);
+              int      scanf(const char *restrict, ...);
+              void     setbuf(FILE *restrict, char *restrict);
+              int      setvbuf(FILE *restrict, char *restrict, int, size_t);
+              int      snprintf(char *restrict, size_t, const char *restrict, ...);
+              int      sprintf(char *restrict, const char *restrict, ...);
+              int      sscanf(const char *restrict, const char *restrict, ...);
+              char    *tempnam(const char *, const char *);
+              FILE    *tmpfile(void);
+              char    *tmpnam(char *);
+              int      ungetc(int, FILE *);
+              int      vdprintf(int, const char *restrict, va_list);
+              int      vfprintf(FILE *restrict, const char *restrict, va_list);
+              int      vfscanf(FILE *restrict, const char *restrict, va_list);
+              int      vprintf(const char *restrict, va_list);
+              int      vscanf(const char *restrict, va_list);
+              int      vsnprintf(char *restrict, size_t, const char *restrict,
+                           va_list);
+              int      vsprintf(char *restrict, const char *restrict, va_list);
+              int      vsscanf(const char *restrict, const char *restrict, va_list);
+
+          Inclusion of the <stdio.h> header may also make visible all
+          symbols from <stddef.h>.
+
+          The following sections are informative.
+
+
+---------------------------------------------------------------------------
+
+::
+
+          Since standard I/O streams may use an underlying file descriptor
+          to access the file associated with a stream, application
+          developers need to be aware that {FOPEN_MAX} streams may not be
+          available if file descriptors are being used to access files that
+          are not associated with streams.
+
+
+-----------------------------------------------------------
+
+::
+
+          There is a conflict between the ISO C standard and the POSIX
+          definition of the {TMP_MAX} macro that is addressed by
+          ISO/IEC 9899:1999 standard, Defect Report 336. The POSIX standard
+          is in alignment with the public record of the response to the
+          Defect Report.  This change has not yet been published as part of
+          the ISO C standard.
+
+
+---------------------------------------------------------------------------
+
+::
+
+          None.
+
+
+---------------------------------------------------------
+
+::
+
+          stdarg.h(0p), stddef.h(0p), sys_types.h(0p)
+
+          The System Interfaces volume of POSIX.1‐2017, Section 2.2, The
+          Compilation Environment, clearerr(3p), ctermid(3p), fclose(3p),
+          fdopen(3p), feof(3p), ferror(3p), fflush(3p), fgetc(3p),
+          fgetpos(3p), fgets(3p), fileno(3p), flockfile(3p), fmemopen(3p),
+          fopen(3p), fprintf(3p), fputc(3p), fputs(3p), fread(3p),
+          freopen(3p), fscanf(3p), fseek(3p), fsetpos(3p), ftell(3p),
+          fwrite(3p), getc(3p), getchar(3p), getc_unlocked(3p),
+          getdelim(3p), getopt(3p), gets(3p), open_memstream(3p),
+          pclose(3p), perror(3p), popen(3p), putc(3p), putchar(3p),
+          puts(3p), remove(3p), rename(3p), rewind(3p), setbuf(3p),
+          setvbuf(3p), stdin(3p), system(3p), tempnam(3p), tmpfile(3p),
+          tmpnam(3p), ungetc(3p), vfprintf(3p), vfscanf(3p)
+
+
+-----------------------------------------------------------
+
+::
+
+          Portions of this text are reprinted and reproduced in electronic
+          form from IEEE Std 1003.1-2017, Standard for Information
+          Technology -- Portable Operating System Interface (POSIX), The
+          Open Group Base Specifications Issue 7, 2018 Edition, Copyright
+          (C) 2018 by the Institute of Electrical and Electronics
+          Engineers, Inc and The Open Group.  In the event of any
+          discrepancy between this version and the original IEEE and The
+          Open Group Standard, the original IEEE and The Open Group
+          Standard is the referee document. The original Standard can be
+          obtained online at http://www.opengroup.org/unix/online.html .
+
+          Any typographical or formatting errors that appear in this page
+          are most likely to have been introduced during the conversion of
+          the source files to man page format. To report such errors, see
+          https://www.kernel.org/doc/man-pages/reporting_bugs.html .
+
+   IEEE/The Open Group               2017                       stdio.h(0P)
+
+--------------
+
+Pages that refer to this page:
+`fcntl.h(0p) <../man0/fcntl.h.0p.html>`__, 
+`float.h(0p) <../man0/float.h.0p.html>`__, 
+`limits.h(0p) <../man0/limits.h.0p.html>`__, 
+`unistd.h(0p) <../man0/unistd.h.0p.html>`__, 
+`wchar.h(0p) <../man0/wchar.h.0p.html>`__, 
+`wctype.h(0p) <../man0/wctype.h.0p.html>`__, 
+`btowc(3p) <../man3/btowc.3p.html>`__, 
+`clearerr(3p) <../man3/clearerr.3p.html>`__, 
+`ctermid(3p) <../man3/ctermid.3p.html>`__, 
+`fclose(3p) <../man3/fclose.3p.html>`__, 
+`fdopen(3p) <../man3/fdopen.3p.html>`__, 
+`feof(3p) <../man3/feof.3p.html>`__, 
+`ferror(3p) <../man3/ferror.3p.html>`__, 
+`fflush(3p) <../man3/fflush.3p.html>`__, 
+`fgetc(3p) <../man3/fgetc.3p.html>`__, 
+`fgetpos(3p) <../man3/fgetpos.3p.html>`__, 
+`fgets(3p) <../man3/fgets.3p.html>`__, 
+`fgetwc(3p) <../man3/fgetwc.3p.html>`__, 
+`fgetws(3p) <../man3/fgetws.3p.html>`__, 
+`fileno(3p) <../man3/fileno.3p.html>`__, 
+`flockfile(3p) <../man3/flockfile.3p.html>`__, 
+`fmemopen(3p) <../man3/fmemopen.3p.html>`__, 
+`fopen(3p) <../man3/fopen.3p.html>`__, 
+`fprintf(3p) <../man3/fprintf.3p.html>`__, 
+`fputc(3p) <../man3/fputc.3p.html>`__, 
+`fputs(3p) <../man3/fputs.3p.html>`__, 
+`fputwc(3p) <../man3/fputwc.3p.html>`__, 
+`fputws(3p) <../man3/fputws.3p.html>`__, 
+`fread(3p) <../man3/fread.3p.html>`__, 
+`freopen(3p) <../man3/freopen.3p.html>`__, 
+`fscanf(3p) <../man3/fscanf.3p.html>`__, 
+`fseek(3p) <../man3/fseek.3p.html>`__, 
+`fsetpos(3p) <../man3/fsetpos.3p.html>`__, 
+`ftell(3p) <../man3/ftell.3p.html>`__, 
+`fwide(3p) <../man3/fwide.3p.html>`__, 
+`fwprintf(3p) <../man3/fwprintf.3p.html>`__, 
+`fwrite(3p) <../man3/fwrite.3p.html>`__, 
+`fwscanf(3p) <../man3/fwscanf.3p.html>`__, 
+`getc(3p) <../man3/getc.3p.html>`__, 
+`getchar(3p) <../man3/getchar.3p.html>`__, 
+`getc_unlocked(3p) <../man3/getc_unlocked.3p.html>`__, 
+`getdelim(3p) <../man3/getdelim.3p.html>`__, 
+`gets(3p) <../man3/gets.3p.html>`__, 
+`getwc(3p) <../man3/getwc.3p.html>`__, 
+`isalnum(3p) <../man3/isalnum.3p.html>`__, 
+`isalpha(3p) <../man3/isalpha.3p.html>`__, 
+`iswalnum(3p) <../man3/iswalnum.3p.html>`__, 
+`open_memstream(3p) <../man3/open_memstream.3p.html>`__, 
+`pclose(3p) <../man3/pclose.3p.html>`__, 
+`perror(3p) <../man3/perror.3p.html>`__, 
+`popen(3p) <../man3/popen.3p.html>`__, 
+`putc(3p) <../man3/putc.3p.html>`__, 
+`putchar(3p) <../man3/putchar.3p.html>`__, 
+`puts(3p) <../man3/puts.3p.html>`__, 
+`putwc(3p) <../man3/putwc.3p.html>`__, 
+`remove(3p) <../man3/remove.3p.html>`__, 
+`rename(3p) <../man3/rename.3p.html>`__, 
+`rewind(3p) <../man3/rewind.3p.html>`__, 
+`setbuf(3p) <../man3/setbuf.3p.html>`__, 
+`setvbuf(3p) <../man3/setvbuf.3p.html>`__, 
+`sqrt(3p) <../man3/sqrt.3p.html>`__, 
+`stdin(3p) <../man3/stdin.3p.html>`__, 
+`tempnam(3p) <../man3/tempnam.3p.html>`__, 
+`tmpfile(3p) <../man3/tmpfile.3p.html>`__, 
+`tmpnam(3p) <../man3/tmpnam.3p.html>`__, 
+`ungetc(3p) <../man3/ungetc.3p.html>`__, 
+`ungetwc(3p) <../man3/ungetwc.3p.html>`__, 
+`vfprintf(3p) <../man3/vfprintf.3p.html>`__, 
+`vfscanf(3p) <../man3/vfscanf.3p.html>`__, 
+`vfwprintf(3p) <../man3/vfwprintf.3p.html>`__, 
+`vfwscanf(3p) <../man3/vfwscanf.3p.html>`__, 
+`wctob(3p) <../man3/wctob.3p.html>`__
+
+--------------
+
+--------------
+
+.. container:: footer
+
+   +-----------------------+-----------------------+-----------------------+
+   | HTML rendering        |                       | |Cover of TLPI|       |
+   | created 2021-08-27 by |                       |                       |
+   | `Michael              |                       |                       |
+   | Ker                   |                       |                       |
+   | risk <https://man7.or |                       |                       |
+   | g/mtk/index.html>`__, |                       |                       |
+   | author of `The Linux  |                       |                       |
+   | Programming           |                       |                       |
+   | Interface <https:     |                       |                       |
+   | //man7.org/tlpi/>`__, |                       |                       |
+   | maintainer of the     |                       |                       |
+   | `Linux man-pages      |                       |                       |
+   | project <             |                       |                       |
+   | https://www.kernel.or |                       |                       |
+   | g/doc/man-pages/>`__. |                       |                       |
+   |                       |                       |                       |
+   | For details of        |                       |                       |
+   | in-depth **Linux/UNIX |                       |                       |
+   | system programming    |                       |                       |
+   | training courses**    |                       |                       |
+   | that I teach, look    |                       |                       |
+   | `here <https://ma     |                       |                       |
+   | n7.org/training/>`__. |                       |                       |
+   |                       |                       |                       |
+   | Hosting by `jambit    |                       |                       |
+   | GmbH                  |                       |                       |
+   | <https://www.jambit.c |                       |                       |
+   | om/index_en.html>`__. |                       |                       |
+   +-----------------------+-----------------------+-----------------------+
+
+--------------
+
+.. container:: statcounter
+
+   |Web Analytics Made Easy - StatCounter|
+
+.. |Cover of TLPI| image:: https://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png
+   :target: https://man7.org/tlpi/
+.. |Web Analytics Made Easy - StatCounter| image:: https://c.statcounter.com/7422636/0/9b6714ff/1/
+   :class: statcounter
+   :target: https://statcounter.com/

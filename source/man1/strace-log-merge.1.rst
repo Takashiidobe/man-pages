@@ -1,0 +1,236 @@
+.. container:: page-top
+
+.. container:: nav-bar
+
+   +----------------------------------+----------------------------------+
+   | `m                               | `Linux/UNIX system programming   |
+   | an7.org <../../../index.html>`__ | trainin                          |
+   | > Linux >                        | g <http://man7.org/training/>`__ |
+   | `man-pages <../index.html>`__    |                                  |
+   +----------------------------------+----------------------------------+
+
+--------------
+
+strace-log-merge(1) — Linux manual page
+=======================================
+
++-----------------------------------+-----------------------------------+
+| `NAME <#NAME>`__ \|               |                                   |
+| `SYNOPSIS <#SYNOPSIS>`__ \|       |                                   |
+| `DESCRIPTION <#DESCRIPTION>`__ \| |                                   |
+| `OPTIONS <#OPTIONS>`__ \|         |                                   |
+| `EXIT STATUS <#EXIT_STATUS>`__ \| |                                   |
+| `                                 |                                   |
+| USAGE EXAMPLE <#USAGE_EXAMPLE>`__ |                                   |
+| \| `NOTES <#NOTES>`__ \|          |                                   |
+| `BUGS <#BUGS>`__ \|               |                                   |
+| `HISTORY <#HISTORY>`__ \|         |                                   |
+| `RE                               |                                   |
+| PORTING BUGS <#REPORTING_BUGS>`__ |                                   |
+| \| `SEE ALSO <#SEE_ALSO>`__ \|    |                                   |
+| `COLOPHON <#COLOPHON>`__          |                                   |
++-----------------------------------+-----------------------------------+
+| .. container:: man-search-box     |                                   |
++-----------------------------------+-----------------------------------+
+
+::
+
+   STRACE-LOG-MERGE(1)      General Commands Manual     STRACE-LOG-MERGE(1)
+
+NAME
+-------------------------------------------------
+
+::
+
+          strace-log-merge - merge strace -ff -tt output
+
+
+---------------------------------------------------------
+
+::
+
+          strace-log-merge STRACE_LOG
+
+          strace-log-merge --help
+
+
+---------------------------------------------------------------
+
+::
+
+          strace-log-merge merges the output of strace -ff -tt[t] command,
+          prepending PID to each line and sorting the result using time
+          stamp as a key.
+
+
+-------------------------------------------------------
+
+::
+
+          --help Show program usage and exit.
+
+          STRACE_LOG
+                 Output file name prefix of files produced by a strace -ff
+                 -tt[t] command.
+
+
+---------------------------------------------------------------
+
+::
+
+          0      Success
+
+          Non-zero
+                 Error occurred: either no argument specified (in that case
+                 a usage is printed), or something went wrong during the
+                 processing of STRACE_LOG.*  files.
+
+
+-------------------------------------------------------------------
+
+::
+
+          $ strace -o sleepy -ff -tt -e trace=execve,nanosleep \
+                  sh -c 'sleep 0.1 & sleep 0.2 & sleep 0.3'
+          $ strace-log-merge sleepy | fold -w 72 -s
+          13475 21:13:52.040837 execve("/bin/sh", ["sh", "-c", "sleep 0.1 & sleep
+          0.2 & sleep 0."...], 0x7ffde54b2450 /* 33 vars */) = 0
+          13478 21:13:52.044050 execve("/bin/sleep", ["sleep", "0.3"],
+          0x5631be4f87a8 /* 33 vars */) = 0
+          13476 21:13:52.044269 execve("/bin/sleep", ["sleep", "0.1"],
+          0x5631be4f87a8 /* 33 vars */) = 0
+          13477 21:13:52.044389 execve("/bin/sleep", ["sleep", "0.2"],
+          0x5631be4f87a8 /* 33 vars */) = 0
+          13478 21:13:52.046207 nanosleep({tv_sec=0, tv_nsec=300000000}, NULL) = 0
+          13476 21:13:52.046303 nanosleep({tv_sec=0, tv_nsec=100000000}, NULL) = 0
+          13477 21:13:52.046318 nanosleep({tv_sec=0, tv_nsec=200000000}, NULL) = 0
+          13476 21:13:52.146852 +++ exited with 0 +++
+          13475 21:13:52.146942 --- SIGCHLD {si_signo=SIGCHLD,
+          si_code=CLD_EXITED, si_pid=13476, si_uid=1000, si_status=0, si_utime=0,
+          si_stime=0} ---
+          13477 21:13:52.247782 +++ exited with 0 +++
+          13475 21:13:52.247885 --- SIGCHLD {si_signo=SIGCHLD,
+          si_code=CLD_EXITED, si_pid=13477, si_uid=1000, si_status=0, si_utime=0,
+          si_stime=0} ---
+          13478 21:13:52.347680 +++ exited with 0 +++
+          13475 21:13:52.347786 --- SIGCHLD {si_signo=SIGCHLD,
+          si_code=CLD_EXITED, si_pid=13478, si_uid=1000, si_status=0, si_utime=0,
+          si_stime=0} ---
+          13475 21:13:52.348069 +++ exited with 0 +++
+
+
+---------------------------------------------------
+
+::
+
+          strace-log-merge does not work well with strace logs generated by
+          strace -tt invocation that pass midnight, as those lack the
+          information required for the proper sorting.  Employing the -ttt
+          option in the respective strace invocation should solve the
+          problem.
+
+
+-------------------------------------------------
+
+::
+
+          strace-log-merge does not perform any checks whether the files
+          specified are in the correct format and implies that only files
+          from a single strace session match STRACE_LOG.*  glob pattern.
+
+
+-------------------------------------------------------
+
+::
+
+          The initial version of strace-log-merge was written by Denys
+          Vlasenko in 2012.
+
+
+---------------------------------------------------------------------
+
+::
+
+          Problems with strace-log-merge should be reported to the strace
+          mailing list at <strace-devel@lists.strace.io>.
+
+
+---------------------------------------------------------
+
+::
+
+          strace(1)
+
+COLOPHON
+---------------------------------------------------------
+
+::
+
+          This page is part of the strace (system call tracer) project.
+          Information about the project can be found at 
+          ⟨http://strace.io/⟩.  If you have a bug report for this manual
+          page, send it to strace-devel@lists.sourceforge.net.  This page
+          was obtained from the project's upstream Git repository
+          ⟨https://github.com/strace/strace.git⟩ on 2021-08-27.  (At that
+          time, the date of the most recent commit that was found in the
+          repository was 2021-08-25.)  If you discover any rendering
+          problems in this HTML version of the page, or you believe there
+          is a better or more up-to-date source for the page, or you have
+          corrections or improvements to the information in this COLOPHON
+          (which is not part of the original manual page), send a mail to
+          man-pages@man7.org
+
+   strace 5.10                    2020-11-29            STRACE-LOG-MERGE(1)
+
+--------------
+
+Pages that refer to this page: `strace(1) <../man1/strace.1.html>`__
+
+--------------
+
+--------------
+
+.. container:: footer
+
+   +-----------------------+-----------------------+-----------------------+
+   | HTML rendering        |                       | |Cover of TLPI|       |
+   | created 2021-08-27 by |                       |                       |
+   | `Michael              |                       |                       |
+   | Ker                   |                       |                       |
+   | risk <https://man7.or |                       |                       |
+   | g/mtk/index.html>`__, |                       |                       |
+   | author of `The Linux  |                       |                       |
+   | Programming           |                       |                       |
+   | Interface <https:     |                       |                       |
+   | //man7.org/tlpi/>`__, |                       |                       |
+   | maintainer of the     |                       |                       |
+   | `Linux man-pages      |                       |                       |
+   | project <             |                       |                       |
+   | https://www.kernel.or |                       |                       |
+   | g/doc/man-pages/>`__. |                       |                       |
+   |                       |                       |                       |
+   | For details of        |                       |                       |
+   | in-depth **Linux/UNIX |                       |                       |
+   | system programming    |                       |                       |
+   | training courses**    |                       |                       |
+   | that I teach, look    |                       |                       |
+   | `here <https://ma     |                       |                       |
+   | n7.org/training/>`__. |                       |                       |
+   |                       |                       |                       |
+   | Hosting by `jambit    |                       |                       |
+   | GmbH                  |                       |                       |
+   | <https://www.jambit.c |                       |                       |
+   | om/index_en.html>`__. |                       |                       |
+   +-----------------------+-----------------------+-----------------------+
+
+--------------
+
+.. container:: statcounter
+
+   |Web Analytics Made Easy - StatCounter|
+
+.. |Cover of TLPI| image:: https://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png
+   :target: https://man7.org/tlpi/
+.. |Web Analytics Made Easy - StatCounter| image:: https://c.statcounter.com/7422636/0/9b6714ff/1/
+   :class: statcounter
+   :target: https://statcounter.com/

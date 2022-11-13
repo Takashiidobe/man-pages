@@ -1,0 +1,31 @@
+Copyright for `pivot_root.2 <pivot_root.2.html>`__:
+
+   ::
+
+      Copyright (C) 2019 Michael Kerrisk <mtk.manpages@gmail.com>
+      A very few fragments remain from an earlier page written by
+      Werner Almesberger in 2000
+
+License for `pivot_root.2 <pivot_root.2.html>`__:
+
+   ::
+
+      Permission is granted to make and distribute verbatim copies of this
+      manual provided the copyright notice and this permission notice are
+      preserved on all copies.
+
+      Permission is granted to copy and distribute modified versions of this
+      manual under the conditions for verbatim copying, provided that the
+      entire resulting derived work is distributed under the terms of a
+      permission notice identical to this one.
+
+      Since the Linux kernel and libraries are constantly changing, this
+      manual page may be incorrect or out-of-date.  The author(s) assume no
+      responsibility for errors or omissions, or for damages resulting from
+      the use of the information contained herein.  The author(s) may not
+      have taken the same level of care in the production of this manual,
+      which is licensed free of charge, as they might when working
+      professionally.
+
+      Formatted or processed versions of this manual, if unaccompanied by
+      the source, must acknowledge the copyright and authors of this work.
