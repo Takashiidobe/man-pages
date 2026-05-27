@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$pagetitle$($section$) - man pages</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/hljs/atom-one-dark.min.css">
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="home-link">man pages</a>
+    <div id="search"></div>
+  </header>
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="/$secdir$/index.html">section $section$</a>
+    <span aria-hidden="true">/</span>
+    <span class="current">$pagetitle$($section$)</span>
+  </nav>
+  <main>
+    <div class="page-header" data-pagefind-ignore>
+      <h1 class="page-name">$pagetitle$<span class="section">($section$)</span></h1>
+      $if(description)$<p class="page-desc">$description$</p>$endif$
+    </div>
+    <span hidden data-pagefind-meta="title:$pagetitle$($section$)"></span>
+    <span hidden data-pagefind-meta="section:$section$" data-pagefind-filter="section:$section$"></span>
+    $if(description)$<span hidden data-pagefind-meta="description:$description$"></span>$endif$
+    <div data-pagefind-body data-pagefind-weight="1">
+      $body$
+    </div>
+  </main>
+  <script src="/hljs/highlight.min.js"></script>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script src="/nav.js"></script>
+</body>
+</html>

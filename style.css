@@ -1,0 +1,228 @@
+:root {
+  --bg: #1a1a1a;
+  --bg-surface: #242424;
+  --bg-raised: #2e2e2e;
+  --border: #3a3a3a;
+  --text: #e8e8e8;
+  --text-muted: #999;
+  --accent: #7aa2f7;
+  --accent-hover: #89b4fa;
+  --code-bg: #2a2a2a;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+  --max-width: 860px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* header */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6rem 1.5rem;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.home-link {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.home-link:hover { color: var(--accent-hover); }
+
+#search {
+  flex: 1;
+  max-width: 480px;
+}
+
+/* pagefind overrides */
+.pagefind-ui__search-input {
+  background: var(--bg-raised) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+}
+.pagefind-ui__search-input:focus { border-color: var(--accent) !important; outline: none !important; }
+.pagefind-ui__results-area { background: var(--bg-surface) !important; }
+.pagefind-ui__result { border-color: var(--border) !important; color: var(--text) !important; }
+.pagefind-ui__result-link { color: var(--accent) !important; }
+.pagefind-ui__message { color: var(--text-muted) !important; }
+
+/* breadcrumb */
+
+.breadcrumb {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.breadcrumb a { color: var(--text-muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb .current { color: var(--text); }
+
+/* main content */
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem 4rem;
+}
+
+/* page header rendered by template — suppress pandoc's NAME h1 */
+.page-header {
+  margin: 1.5rem 0 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.page-name {
+  font-size: 1.8rem;
+  font-family: var(--font-mono);
+  margin: 0 0 0.3rem;
+  color: var(--text);
+}
+.page-name .section { color: var(--text-muted); font-weight: 400; }
+.page-desc { margin: 0; color: var(--text-muted); font-size: 1rem; }
+
+h1 { font-size: 1.6rem; margin: 2.5rem 0 0.5rem; color: var(--text); }
+h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 2rem 0 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+
+p { margin: 0.6rem 0; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+code { background: var(--code-bg); padding: 0.1em 0.3em; border-radius: 3px; }
+pre code { background: none; padding: 0; }
+
+/* definition lists (used heavily in man pages) */
+dl { margin: 0.5rem 0; }
+dt { font-weight: 600; margin-top: 0.8rem; }
+dd { margin-left: 2rem; margin-top: 0.2rem; }
+
+strong { color: var(--text); }
+em { font-style: italic; }
+
+/* index page */
+
+.index-header {
+  padding: 3rem 1.5rem 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.index-header h1 { margin: 0 0 0.4rem; font-size: 2rem; }
+.index-header p { color: var(--text-muted); margin: 0; }
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.section-card {
+  display: block;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+}
+.section-card:hover, .section-card:focus {
+  border-color: var(--accent);
+  background: var(--bg-raised);
+  color: var(--text);
+  text-decoration: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.section-card .num { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+.section-card .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
+.section-card .count { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem; }
+
+/* page list (section index) */
+
+.page-list {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.page-list-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+.page-list-header h2 { margin: 0; font-size: 1.2rem; text-transform: none; letter-spacing: 0; border: none; padding: 0; }
+.page-count { color: var(--text-muted); font-size: 0.85rem; }
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.3rem;
+}
+
+.page-link {
+  display: block;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+}
+.page-link:hover, .page-link.focused {
+  background: var(--bg-raised);
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+.page-link:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
